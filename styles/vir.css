@@ -1,0 +1,350 @@
+/**
+ * VIR CHARACTER STYLES & ANIMATIONS
+ * Consistent Cartoon German Shepherd Mascot
+ */
+
+.vir-container {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  filter: drop-shadow(0 12px 24px rgba(168, 85, 247, 0.22));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.vir-svg {
+  width: 190px;
+  height: 215px;
+  overflow: visible;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .vir-svg {
+    width: 155px;
+    height: 175px;
+  }
+}
+
+/* === IDLE & BREATHING ANIMATION === */
+.vir-head-group {
+  transform-origin: 110px 130px;
+  animation: headBreathe 3.6s ease-in-out infinite;
+}
+
+.vir-body-group {
+  transform-origin: 110px 210px;
+  animation: bodyBreathe 3.6s ease-in-out infinite;
+}
+
+@keyframes headBreathe {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(1deg); }
+}
+
+@keyframes bodyBreathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.015, 0.985); }
+}
+
+/* === TAIL WAGGING (Signature German Shepherd tail) === */
+.vir-tail-group {
+  transform-origin: 148px 182px;
+  animation: tailWag 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes tailWag {
+  0% { transform: rotate(-14deg); }
+  100% { transform: rotate(18deg); }
+}
+
+/* Fast excited tail wag */
+.vir-jump .vir-tail-group,
+.has-party-hat .vir-tail-group,
+.vir-excited .vir-tail-group {
+  animation: tailWagFast 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes tailWagFast {
+  0% { transform: rotate(-22deg); }
+  100% { transform: rotate(26deg); }
+}
+
+/* === BLINKING === */
+.vir-eyes .eyes-open {
+  transform-origin: 110px 88px;
+  animation: eyeBlink 4.2s infinite;
+}
+
+@keyframes eyeBlink {
+  0%, 94%, 98%, 100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.08);
+  }
+}
+
+/* By default, show normal eyes, hide joyful eyes */
+.vir-eyes .eyes-joyful {
+  display: none;
+}
+
+/* In jump or celebration, show joyful closed curves ^ ^ */
+.vir-jump .vir-eyes .eyes-open,
+.expr-celebrate .vir-eyes .eyes-open {
+  display: none;
+}
+
+.vir-jump .vir-eyes .eyes-joyful,
+.expr-celebrate .vir-eyes .eyes-joyful {
+  display: block;
+}
+
+/* === EAR TWITCH === */
+.vir-ear.ear-left {
+  transform-origin: 68px 80px;
+  animation: earTwitchLeft 6s ease-in-out infinite;
+}
+
+.vir-ear.ear-right {
+  transform-origin: 152px 80px;
+  animation: earTwitchRight 7s ease-in-out infinite 0.5s;
+}
+
+@keyframes earTwitchLeft {
+  0%, 92%, 100% { transform: rotate(0deg); }
+  94% { transform: rotate(-6deg); }
+  96% { transform: rotate(2deg); }
+  98% { transform: rotate(0deg); }
+}
+
+@keyframes earTwitchRight {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  92% { transform: rotate(6deg); }
+  95% { transform: rotate(-3deg); }
+  97% { transform: rotate(0deg); }
+}
+
+/* === MOUTH & TALKING === */
+.vir-tongue-group {
+  transform-origin: 110px 116px;
+  transition: transform 0.2s ease;
+  transform: scale(0.85);
+}
+
+.is-talking .vir-tongue-group {
+  animation: mouthTalk 0.22s ease-in-out infinite alternate;
+}
+
+.is-talking .vir-head-group {
+  animation: headTalk 0.44s ease-in-out infinite alternate;
+}
+
+@keyframes mouthTalk {
+  0% { transform: scale(0.7) translateY(-1px); }
+  100% { transform: scale(1.2) translateY(2px); }
+}
+
+@keyframes headTalk {
+  0% { transform: translateY(0) rotate(-1.5deg); }
+  100% { transform: translateY(-3px) rotate(1.5deg); }
+}
+
+/* === PARTY HAT === */
+.vir-party-hat {
+  opacity: 0;
+  transform: translate(108px, 20px) scale(0.2);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.has-party-hat .vir-party-hat {
+  opacity: 1;
+  transform: translate(108px, 48px) rotate(-6deg) scale(1);
+}
+
+/* === POSES === */
+
+/* 1. WALKING POSE */
+.vir-walk {
+  animation: walkBounce 0.6s ease-in-out infinite alternate;
+}
+
+.vir-walk .leg-front-left {
+  transform-origin: 89px 156px;
+  animation: walkLegFrontLeft 0.6s ease-in-out infinite alternate;
+}
+
+.vir-walk .leg-front-right {
+  transform-origin: 131px 156px;
+  animation: walkLegFrontRight 0.6s ease-in-out infinite alternate;
+}
+
+.vir-walk .hind-left {
+  transform-origin: 64px 175px;
+  animation: walkLegHindLeft 0.6s ease-in-out infinite alternate;
+}
+
+.vir-walk .hind-right {
+  transform-origin: 156px 175px;
+  animation: walkLegHindRight 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes walkBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-7px) rotate(1deg); }
+}
+
+@keyframes walkLegFrontLeft {
+  0% { transform: rotate(-18deg); }
+  100% { transform: rotate(18deg); }
+}
+
+@keyframes walkLegFrontRight {
+  0% { transform: rotate(18deg); }
+  100% { transform: rotate(-18deg); }
+}
+
+@keyframes walkLegHindLeft {
+  0% { transform: rotate(14deg); }
+  100% { transform: rotate(-14deg); }
+}
+
+@keyframes walkLegHindRight {
+  0% { transform: rotate(-14deg); }
+  100% { transform: rotate(14deg); }
+}
+
+/* 2. JUMPING HAPPILY POSE */
+.vir-jump {
+  animation: happyJump 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) infinite alternate;
+}
+
+.vir-jump .vir-ground-shadow {
+  animation: shadowShrink 0.8s ease-in-out infinite alternate;
+}
+
+.vir-jump .leg-front-left {
+  transform: rotate(-16deg) translateY(-6px);
+}
+.vir-jump .leg-front-right {
+  transform: rotate(16deg) translateY(-6px);
+}
+
+@keyframes happyJump {
+  0% { transform: translateY(0) scale(1.02, 0.96); }
+  100% { transform: translateY(-38px) scale(0.97, 1.03) rotate(-2deg); }
+}
+
+@keyframes shadowShrink {
+  0% { transform: scale(1); opacity: 0.25; }
+  100% { transform: scale(0.55); opacity: 0.1; }
+}
+
+/* 3. SITTING BESIDE CAKE POSE */
+.vir-cake {
+  animation: gentleSway 3s ease-in-out infinite alternate;
+}
+
+.vir-cake .vir-head-group {
+  transform: rotate(3deg) translateY(-1px);
+}
+
+@keyframes gentleSway {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-2deg); }
+}
+
+/* === SPEECH BUBBLE === */
+.vir-speech-bubble {
+  position: relative;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid #d8b4fe;
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.18),
+              0 0 0 4px rgba(244, 114, 182, 0.12);
+  border-radius: 24px;
+  padding: 18px 24px;
+  max-width: 440px;
+  min-width: 260px;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: bottom center;
+}
+
+/* Speech bubble pointer / triangle */
+.vir-speech-bubble::after,
+.vir-speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 14px solid rgba(255, 255, 255, 0.94);
+}
+
+.vir-speech-bubble::before {
+  bottom: -17px;
+  border-top-color: #d8b4fe;
+  border-top-width: 17px;
+  border-left-width: 14px;
+  border-right-width: 14px;
+}
+
+.vir-speech-text {
+  font-family: 'Quicksand', -apple-system, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #4c1d6b;
+  line-height: 1.55;
+  margin: 0;
+  min-height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Typing cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.15em;
+  background: #db2777;
+  margin-left: 4px;
+  vertical-align: middle;
+  border-radius: 2px;
+  animation: cursorBlink 0.75s infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Vir's Mini Name Badge above speech */
+.vir-name-badge {
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  background: linear-gradient(135deg, #f472b6, #a855f7);
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

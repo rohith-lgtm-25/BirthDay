@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vindhya's Magical Birthday Surprise 🎂 | Featuring Vir</title>
+  <meta name="description" content="A magical, interactive birthday surprise for Vindhya featuring her cute cartoon German Shepherd friend Vir.">
+
+  <!-- Favicon in Pink / Lavender -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/vir.css">
+  <link rel="stylesheet" href="styles/effects.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       MAGICAL BACKGROUND PARTICLES & DREAMY PASTEL CLOUDS
+       ========================================================= -->
+  <div class="magical-bg" aria-hidden="true">
+    <div class="pastel-cloud cloud-1"></div>
+    <div class="pastel-cloud cloud-2"></div>
+    <div class="pastel-cloud cloud-3"></div>
+    <div id="magical-bg-particles"></div>
+  </div>
+
+  <!-- FAIRY LIGHTS STRING (Activated after blowing candles) -->
+  <div id="fairy-lights-container" class="fairy-lights-container" aria-hidden="true"></div>
+
+  <!-- FLOATING BALLOONS CONTAINER -->
+  <div id="balloon-group" class="balloon-group" aria-hidden="true"></div>
+
+  <!-- FULL-SCREEN CONFETTI CANVAS -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- SKY LANTERN CONTAINER -->
+  <div id="sky-lantern-container" aria-hidden="true"></div>
+
+  <!-- SUSPENSE DARKNESS OVERLAY (During candle blowing) -->
+  <div class="suspense-overlay" aria-hidden="true"></div>
+
+  <!-- =========================================================
+       TOP NAVIGATION & CONTROLS
+       ========================================================= -->
+  <header class="top-nav" role="banner">
+    <div class="brand-badge">
+      <span class="brand-heart" aria-hidden="true">💗</span>
+      <span class="brand-text">Happy Birthday Vindhya!</span>
+    </div>
+
+    <!-- Chapter Progress Dots -->
+    <nav class="nav-dots" aria-label="Page navigation">
+      <button class="nav-dot active" data-page="1" title="Vir's Magical Entrance & Cake" aria-label="Page 1: Entrance and Cake"></button>
+      <button class="nav-dot" data-page="2" title="A Beautiful Friendship Story" aria-label="Page 2: Friendship Story"></button>
+      <button class="nav-dot" data-page="3" title="What Makes Vindhya Special" aria-label="Page 3: What Makes Vindhya Special"></button>
+      <button class="nav-dot" data-page="4" title="Vir's Heartfelt Letter & Wishes" aria-label="Page 4: Letter and Wishes"></button>
+    </nav>
+
+    <!-- Music & Audio Controls -->
+    <div class="nav-controls">
+      <button id="music-toggle-btn" class="nav-btn music-btn" aria-label="Toggle Birthday Music">
+        <span class="music-bars" aria-hidden="true">
+          <span class="music-bar"></span>
+          <span class="music-bar"></span>
+          <span class="music-bar"></span>
+        </span>
+        <span class="btn-label">Music: ON</span>
+      </button>
+
+      <button id="sound-toggle-btn" class="nav-btn sound-btn" aria-label="Toggle Sound Effects">
+        <span aria-hidden="true">🔔</span>
+        <span class="btn-label">Sound: ON</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       MAIN MULTI-PAGE APPLICATION
+       ========================================================= -->
+  <main class="app-container" role="main">
+
+    <!-- =========================================================
+         PAGE 1: VIR'S MAGICAL ENTRANCE & BIRTHDAY CAKE
+         ========================================================= -->
+    <section id="page-1" class="page-section active-page" aria-label="Vir's Magical Entrance">
+
+      <!-- INTRO STAGE: VIR ENTERS FROM LEFT -->
+      <div id="intro-stage-area" class="stage-area">
+
+        <!-- Speech Bubble for Vir -->
+        <div id="speech-bubble-1" class="vir-speech-bubble" style="display: none;" role="region" aria-live="polite">
+          <div class="vir-name-badge">
+            <span aria-hidden="true">🐾</span> VIR
+          </div>
+          <p id="vir-speech-text-1" class="vir-speech-text"></p>
+        </div>
+
+        <!-- Vir's Animated Moving Container -->
+        <div id="vir-entrance-wrapper" class="vir-entrance-wrapper vir-walking-in">
+          <div id="vir-stage-1" class="vir-container"></div>
+        </div>
+
+        <!-- Interactive Button: [HELLO VIR! 💗] -->
+        <div style="margin-top: 24px; min-height: 60px;">
+          <button id="btn-hello-vir" class="btn-magical" style="display: none;">
+            HELLO VIR! 💗
+          </button>
+        </div>
+      </div>
+
+      <!-- CAKE INTERACTION STAGE -->
+      <div id="cake-interactive-stage" class="cake-interactive-stage">
+
+        <!-- Speech Bubble for Cake Scene -->
+        <div id="speech-bubble-cake" class="vir-speech-bubble" role="region" aria-live="polite">
+          <div class="vir-name-badge">
+            <span aria-hidden="true">🐾</span> VIR
+          </div>
+          <p id="vir-speech-cake" class="vir-speech-text"></p>
+        </div>
+
+        <!-- Cake with Vir sitting beside it -->
+        <div class="cake-with-vir">
+          <!-- Vir sitting beside cake -->
+          <div id="vir-cake-pup" class="vir-container"></div>
+          <!-- 2-Tier Birthday Cake with glowing candles -->
+          <div id="cake-container" class="cake-scene"></div>
+        </div>
+
+        <!-- Interactive Button: [BLOW THE CANDLES 🎂] -->
+        <div style="margin-top: 20px; min-height: 60px;">
+          <button id="btn-blow-candles" class="btn-magical" style="display: none;">
+            BLOW THE CANDLES 🎂
+          </button>
+        </div>
+
+        <!-- GRAND BIRTHDAY REVEAL CARD (Appears after blowing candles) -->
+        <div id="grand-reveal-card" class="grand-reveal-card">
+          <div style="font-size: 2.5rem; margin-bottom: 10px;">✨ 🎂 💖</div>
+          <h1 class="grand-title">HAPPY BIRTHDAY, VINDHYA!</h1>
+          <p class="grand-subtitle">
+            Today is your day, and Vir has prepared a little magical journey just for you!
+          </p>
+          <button id="btn-start-journey" class="btn-magical">
+            LET'S START OUR JOURNEY →
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================
+         PAGE 2: A BEAUTIFUL FRIENDSHIP STORY
+         ========================================================= -->
+    <section id="page-2" class="page-section" aria-label="A Beautiful Friendship Story">
+
+      <div class="story-header">
+        <h2 class="section-title">Every Friendship Has a Story...</h2>
+      </div>
+
+      <!-- Vir sitting beside an open storybook -->
+      <div class="story-vir-companion">
+        <div id="vir-story-stage" class="vir-container"></div>
+        <div id="storybook-container"></div>
+      </div>
+
+      <!-- Speech Bubble for Story Introduction -->
+      <div class="vir-speech-bubble" style="margin-bottom: 40px;" role="region" aria-live="polite">
+        <div class="vir-name-badge">
+          <span aria-hidden="true">🐾</span> VIR
+        </div>
+        <p id="vir-speech-story" class="vir-speech-text"></p>
+      </div>
+
+      <!-- Animated Vertical Timeline -->
+      <div class="timeline-container">
+
+        <!-- CHAPTER 1: THE BEGINNING -->
+        <article class="timeline-item" id="chapter-1">
+          <div class="timeline-badge" id="timeline-badge-1"></div>
+          <div class="story-card">
+            <span class="chapter-tag">Chapter 1</span>
+            <h3 class="chapter-title">The Beginning</h3>
+            <p class="chapter-text">
+              "Every beautiful friendship has a beginning. Sometimes, we don't even realize how special a person will become when they first enter our lives."
+            </p>
+          </div>
+        </article>
+
+        <!-- CHAPTER 2: CHILDHOOD MEMORIES -->
+        <article class="timeline-item" id="chapter-2">
+          <div class="timeline-badge" id="timeline-badge-2"></div>
+          <div class="story-card">
+            <span class="chapter-tag">Chapter 2</span>
+            <h3 class="chapter-title">Childhood Memories</h3>
+            <p class="chapter-text">
+              "Those childhood days! The innocent smiles, little moments, silly things, and memories that stay with us even as we grow older."
+            </p>
+          </div>
+        </article>
+
+        <!-- CHAPTER 3: GROWING UP -->
+        <article class="timeline-item" id="chapter-3">
+          <div class="timeline-badge" id="timeline-badge-3"></div>
+          <div class="story-card">
+            <span class="chapter-tag">Chapter 3</span>
+            <h3 class="chapter-title">Growing Up</h3>
+            <p class="chapter-text">
+              "Time passes so quickly, doesn't it, Vindhya? We grow, change, learn new things, and experience so many different chapters of life."
+            </p>
+          </div>
+        </article>
+
+        <!-- CHAPTER 4: THE FRIENDSHIP -->
+        <article class="timeline-item" id="chapter-4">
+          <div class="timeline-badge" id="timeline-badge-4"></div>
+          <div class="story-card">
+            <span class="chapter-tag">Chapter 4</span>
+            <h3 class="chapter-title">The Friendship</h3>
+            <p class="chapter-text">
+              "Friendship isn't about being together every single moment. It's about caring, understanding, remembering, and wishing the best for each other."
+            </p>
+          </div>
+        </article>
+
+        <!-- CHAPTER 5: THE JOURNEY AHEAD -->
+        <article class="timeline-item" id="chapter-5">
+          <div class="timeline-badge" id="timeline-badge-5"></div>
+          <div class="story-card">
+            <span class="chapter-tag">Chapter 5</span>
+            <h3 class="chapter-title">The Journey Ahead</h3>
+            <p class="chapter-text">
+              "And the beautiful thing is that the story doesn't end here. There are still so many new memories, smiles, adventures, and wonderful moments waiting ahead."
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Vir's Concluding Words -->
+      <div class="story-conclusion-box">
+        <p class="story-conclusion-text">
+          "From childhood memories to the person you are today, every chapter is part of a beautiful journey. And I hope your next chapters are even more wonderful!"
+        </p>
+        <div style="margin-top: 10px; font-size: 1.1rem; color: var(--pink-deep); font-weight: 700;">
+          — Vir 🐾
+        </div>
+      </div>
+
+      <!-- Navigation Button: [LET'S TALK ABOUT YOU →] -->
+      <div style="margin-top: 30px; text-align: center;">
+        <button id="btn-to-page-3" class="btn-magical" style="display: none;">
+          LET'S TALK ABOUT YOU →
+        </button>
+      </div>
+
+    </section>
+
+    <!-- =========================================================
+         PAGE 3: WHAT MAKES VINDHYA SPECIAL
+         ========================================================= -->
+    <section id="page-3" class="page-section" aria-label="What Makes Vindhya Special">
+
+      <div class="special-header">
+        <h2 class="section-title">Do You Know How Special You Are?</h2>
+      </div>
+
+      <!-- Vir sitting on a pink plush cushion -->
+      <div class="cushion-stage">
+        <!-- Vir puppy -->
+        <div id="vir-cushion-stage" class="vir-container"></div>
+        <!-- Plush cushion SVG -->
+        <div id="cushion-container" class="cushion-wrapper"></div>
+      </div>
+
+      <!-- Vir Speech Bubble -->
+      <div class="vir-speech-bubble" style="margin-bottom: 40px;" role="region" aria-live="polite">
+        <div class="vir-name-badge">
+          <span aria-hidden="true">🐾</span> VIR
+        </div>
+        <p id="vir-speech-special" class="vir-speech-text"></p>
+      </div>
+
+      <!-- Special Animated Cards Grid -->
+      <div class="cards-grid">
+
+        <!-- CARD 1: YOUR SMILE -->
+        <div class="special-card" style="opacity: 0; transform: translateY(24px);">
+          <div class="card-top">
+            <div id="card-badge-0"></div>
+            <div>
+              <span class="card-tag">Quality #1</span>
+              <h3 class="card-title">Your Smile</h3>
+            </div>
+          </div>
+          <p class="card-body">
+            "Your smile has a beautiful way of making ordinary moments feel special."
+          </p>
+        </div>
+
+        <!-- CARD 2: YOUR KINDNESS -->
+        <div class="special-card" style="opacity: 0; transform: translateY(24px);">
+          <div class="card-top">
+            <div id="card-badge-1"></div>
+            <div>
+              <span class="card-tag">Quality #2</span>
+              <h3 class="card-title">Your Kindness</h3>
+            </div>
+          </div>
+          <p class="card-body">
+            "Never lose that kindness and warmth that make you such a wonderful person."
+          </p>
+        </div>
+
+        <!-- CARD 3: YOUR STRENGTH -->
+        <div class="special-card" style="opacity: 0; transform: translateY(24px);">
+          <div class="card-top">
+            <div id="card-badge-2"></div>
+            <div>
+              <span class="card-tag">Quality #3</span>
+              <h3 class="card-title">Your Strength</h3>
+            </div>
+          </div>
+          <p class="card-body">
+            "Even when life gets difficult, I hope you always remember how strong you are."
+          </p>
+        </div>
+
+        <!-- CARD 4: YOUR PERSONALITY -->
+        <div class="special-card" style="opacity: 0; transform: translateY(24px);">
+          <div class="card-top">
+            <div id="card-badge-3"></div>
+            <div>
+              <span class="card-tag">Quality #4</span>
+              <h3 class="card-title">Your Personality</h3>
+            </div>
+          </div>
+          <p class="card-body">
+            "There's only one you, Vindhya. Never feel the need to become someone else."
+          </p>
+        </div>
+
+        <!-- CARD 5: YOUR DREAMS -->
+        <div class="special-card" style="opacity: 0; transform: translateY(24px);">
+          <div class="card-top">
+            <div id="card-badge-4"></div>
+            <div>
+              <span class="card-tag">Quality #5</span>
+              <h3 class="card-title">Your Dreams</h3>
+            </div>
+          </div>
+          <p class="card-body">
+            "Never stop dreaming big, believing in yourself, and chasing the stars that call your name. You have everything it takes to make them all come true!"
+          </p>
+        </div>
+
+        <!-- CARD 6: A FRIEND'S PROMISE -->
+        <div class="special-card" style="opacity: 0; transform: translateY(24px);">
+          <div class="card-top">
+            <div id="card-badge-5"></div>
+            <div>
+              <span class="card-tag">Promise #6</span>
+              <h3 class="card-title">A Friend's Promise</h3>
+            </div>
+          </div>
+          <p class="card-body">
+            "Always remember that no matter where life leads, you have friends cheering for you, believing in you, and wishing you all the happiness in the world!"
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Navigation Button: [A SPECIAL WISH FOR VINDHYA →] -->
+      <div style="text-align: center; margin-top: 10px;">
+        <button id="btn-to-page-4" class="btn-magical" style="display: none;">
+          A SPECIAL WISH FOR VINDHYA →
+        </button>
+      </div>
+
+    </section>
+
+    <!-- =========================================================
+         PAGE 4: VIR'S HEARTFELT LETTER & SKY LANTERN
+         ========================================================= -->
+    <section id="page-4" class="page-section" aria-label="A Heartfelt Wish For You">
+
+      <div class="story-header">
+        <h2 class="section-title">A Heartfelt Wish For You, Vindhya</h2>
+      </div>
+
+      <!-- Vir in Party Hat -->
+      <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 25px;">
+        <div id="vir-finale-stage" class="vir-container"></div>
+      </div>
+
+      <!-- Speech Bubble for Vir -->
+      <div class="vir-speech-bubble" style="margin-bottom: 30px;" role="region" aria-live="polite">
+        <div class="vir-name-badge">
+          <span aria-hidden="true">🐾</span> VIR
+        </div>
+        <p id="vir-speech-finale" class="vir-speech-text"></p>
+      </div>
+
+      <!-- INTERACTIVE BIRTHDAY ENVELOPE (Tap to Open) -->
+      <div id="interactive-envelope" class="interactive-envelope" role="button" tabindex="0" aria-label="Tap to open Vir's birthday letter">
+        <div class="envelope-body">
+          <div class="envelope-wax-seal">
+            <span>💌</span>
+          </div>
+          <span class="envelope-prompt">TAP WAX SEAL TO OPEN LETTER</span>
+        </div>
+      </div>
+
+      <!-- OPENED LETTER CONTENT -->
+      <div id="opened-letter-card" class="opened-letter-card">
+        <h3 class="letter-salutation">Dearest Vindhya,</h3>
+        <div class="letter-paragraphs">
+          <p style="margin-bottom: 14px;">
+            Today is a celebration of the wonderful, bright, thoughtful soul that you are. In a world full of ordinary things, your presence brings genuine warmth, laughter, and light into every life you touch.
+          </p>
+          <p style="margin-bottom: 14px;">
+            As you celebrate this special birthday, I hope you look back at how far you've come with pride, and look forward with excitement and joy. May this coming year bring you health, peace of mind, sweet surprises, and countless reasons to smile.
+          </p>
+          <p>
+            Always remember how cherished you are, and keep shining brightly just the way you are.
+          </p>
+        </div>
+        <div class="letter-signature">
+          With all the puppy love in the world,<br>
+          <span style="font-size: 2.8rem; color: var(--pink-deep);">🐾 Vir</span>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE SKY LANTERN WISHING WELL -->
+      <div class="lantern-wishing-well">
+        <div style="font-size: 2.2rem; margin-bottom: 6px;">🏮 ✨ 🌟</div>
+        <h3 class="well-title">Make a Secret Birthday Wish</h3>
+        <p class="well-desc">
+          Type your deepest wish below, Vindhya, and send it floating high into the starry lavender sky!
+        </p>
+
+        <div class="wish-input-group">
+          <input type="text" id="wish-input-field" class="wish-input" placeholder="Type your beautiful wish here..." aria-label="Type your birthday wish">
+          <button id="btn-release-wish" class="btn-magical">
+            RELEASE WISH ✨
+          </button>
+        </div>
+      </div>
+
+      <!-- VIR INTERACTION ACTIONS -->
+      <div class="pup-actions-bar">
+        <button id="btn-pet-vir" class="btn-magical btn-secondary">
+          🐾 Pet Vir's Head!
+        </button>
+        <button id="btn-more-confetti" class="btn-magical btn-secondary">
+          🎉 Shower More Confetti!
+        </button>
+        <button id="btn-replay-journey" class="btn-magical">
+          ✨ Replay Vir's Magical Adventure
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       SCRIPTS (Modular, Zero External Dependencies)
+       ========================================================= -->
+  <script src="scripts/audio.js"></script>
+  <script src="scripts/vir.js"></script>
+  <script src="assets/illustrations.js"></script>
+  <script src="scripts/particles.js"></script>
+  <script src="scripts/app.js"></script>
+
+</body>
+</html>

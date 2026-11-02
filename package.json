@@ -1,0 +1,19 @@
+{
+  "name": "vindhya-birthday-surprise",
+  "version": "1.0.0",
+  "description": "An interactive, animated birthday adventure featuring Vir for Vindhya.",
+  "private": true,
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static build complete: zero compile step needed'"
+  },
+  "keywords": [
+    "birthday",
+    "interactive",
+    "animation",
+    "canvas-confetti",
+    "web-audio"
+  ],
+  "author": "rohith-lgtm-25",
+  "license": "MIT"
+}
