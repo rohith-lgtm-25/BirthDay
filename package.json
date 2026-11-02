@@ -4,8 +4,8 @@
   "description": "An interactive, animated birthday adventure featuring Vir for Vindhya.",
   "private": true,
   "scripts": {
-    "start": "npx serve .",
-    "build": "echo 'Static build complete: zero compile step needed'"
+    "start": "npx serve dist",
+    "build": "node build.js"
   },
   "keywords": [
     "birthday",
